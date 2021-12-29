@@ -3,15 +3,15 @@ import React from "react";
 const Analytics = () => {
   return (
     <svg
-      class="icon icon-tabler icon-tabler-device-analytics"
+      className="icon icon-tabler icon-tabler-device-analytics"
       width="1.3rem"
       height="1.3rem"
       viewBox="0 0 24 24"
-      stroke-width="1.5"
+      strokeWidth="1.5"
       stroke="currentColor"
       fill="none"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
       <rect x="3" y="4" width="18" height="12" rx="1"></rect>

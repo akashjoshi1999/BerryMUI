@@ -3,16 +3,16 @@ import React from "react";
 const Customber = () => {
   return (
     <svg
-      class="icon icon-tabler icon-tabler-basket"
+      className="icon icon-tabler icon-tabler-basket"
       width="1.3rem"
       height="1.3rem"
       viewBox="0 0 24 24"
-      stroke-width="1.5"
+      strokeWidth="1.5"
       stroke="currentColor"
       fill="none"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      // style="margin-top: auto; margin-bottom: auto;"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    // style="margin-top: auto; margin-bottom: auto;"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
       <polyline points="7 10 12 4 17 10"></polyline>

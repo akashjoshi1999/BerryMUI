@@ -3,15 +3,15 @@ import React from "react";
 const Default = () => {
   return (
     <svg
-      class="icon icon-tabler icon-tabler-dashboard"
+      className="icon icon-tabler icon-tabler-dashboard"
       width="1.3rem"
       height="1.3rem"
       viewBox="0 0 24 24"
-      stroke-width="1.5"
+      strokeWidth="1.5"
       stroke="currentColor"
       fill="none"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
       <circle cx="12" cy="13" r="2"></circle>

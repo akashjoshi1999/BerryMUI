@@ -3,16 +3,16 @@ import React from "react";
 const User = () => {
   return (
     <svg
-      class="icon icon-tabler icon-tabler-user-check"
+      className="icon icon-tabler icon-tabler-user-check"
       width="1.3rem"
       height="1.3rem"
       viewBox="0 0 24 24"
-      stroke-width="1.5"
+      strokeWidth="1.5"
       stroke="currentColor"
       fill="none"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      // style="margin-top: auto; margin-bottom: auto;"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    // style="margin-top: auto; margin-bottom: auto;"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
       <circle cx="9" cy="7" r="4"></circle>

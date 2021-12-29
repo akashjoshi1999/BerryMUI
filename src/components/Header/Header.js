@@ -17,18 +17,17 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
-import MuiAppBar from "@mui/material/AppBar";
 import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import { Dashboard, Widget, Application } from "../Icons";
+import { Dashboard, Widget, Application, Forms } from "../Icons";
 import { Collapse, ListItemButton } from "@mui/material";
-import { ExpandLess, ExpandMore, ThreeSixtyTwoTone } from "@mui/icons-material";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import Listing from "../Listing";
+import CollapseList from "../CollapseList";
 
-const drawerWidth = 240;
+const drawerWidth = 270;
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -94,24 +93,24 @@ export default function Header() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const [openDrop_1, setOpenDrop_1] = React.useState(true);
+  // const [openDrop_1, setOpenDrop_1] = React.useState(true);
 
-  const handleClick_1 = () => {
-    setOpenDrop_1(!openDrop_1);
-  };
+  // const handleClick_1 = () => {
+  //   setOpenDrop_1(!openDrop_1);
+  // };
 
 
-  const [openDrop_2, setOpenDrop_2] = React.useState(true);
+  // const [openDrop_2, setOpenDrop_2] = React.useState(true);
 
-  const handleClick_2 = () => {
-    setOpenDrop_2(!openDrop_2);
-  };
+  // const handleClick_2 = () => {
+  //   setOpenDrop_2(!openDrop_2);
+  // };
 
-  const [openDrop_3, setOpenDrop_3] = React.useState(true);
+  // const [openDrop_3, setOpenDrop_3] = React.useState(true);
 
-  const handleClick_3 = () => {
-    setOpenDrop_3(!openDrop_3);
-  };
+  // const handleClick_3 = () => {
+  //   setOpenDrop_3(!openDrop_3);
+  // };
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -293,96 +292,26 @@ export default function Header() {
         <Box sx={{ overflow: "auto", textAlign: "left", padding: "10px" }}>
           <List>
             <Typography variant="p">Dashboard</Typography>
-            {Dashboard.map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemButton>
-                  <ListItemIcon>{text.icon}</ListItemIcon>
-                  <ListItemText primary={text.title} />
-                </ListItemButton>
-              </ListItem>
+            {Dashboard.map((text) => (
+              <Listing text={text} key={text.title} />
             ))}
           </List>
           <List>
             <Typography variant="span">Widget</Typography>
-            {Widget.map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemButton>
-                  <ListItemIcon>{text.icon}</ListItemIcon>
-                  <ListItemText primary={text.title} />
-                </ListItemButton>
-              </ListItem>
+            {Widget.map((text) => (
+              <Listing text={text} key={text.title} />
             ))}
           </List>
           <List>
-            <Typography variant="span">Application</Typography>
-
-            {Application.map((text, index) => (
-              <ListItem button key={index}>
-                <ListItemButton onClick={handleClick_1}>
-                  <ListItemIcon>{text.icon}</ListItemIcon>
-                  <ListItemText primary={text.title} />
-                  {openDrop_1 ? <ExpandLess /> : <ExpandMore />}
-                </ListItemButton>
-                <Collapse in={openDrop_1} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    <ListItemButton sx={{ pl: 4 }}>
-                      <ListItemIcon>
-                        {text.items && text.items.map((text, index2) => (
-                          <ListItem button key={index2}>
-                            <ListItemButton onClick={handleClick_2}>
-                              <ListItemText primary={text.title} />
-                              {openDrop_2 ? <ExpandLess /> : <ExpandMore />}
-                            </ListItemButton>
-                            <Collapse
-                              in={openDrop_2}
-                              timeout="auto"
-                              unmountOnExit
-                            >
-                              <List component="div" disablePadding>
-                                <ListItemButton sx={{ pl: 4 }}>
-                                  <ListItemIcon>
-                                    {text.items &&
-                                      text.items.map((text, index3) => (
-                                        <ListItem button key={index3}>
-                                          <ListItemButton
-                                            onClick={handleClick_3}
-                                          >
-                                            <ListItemText
-                                              primary={text.title}
-                                            />
-                                            {openDrop_3 ? (
-                                              <ExpandLess />
-                                            ) : (
-                                              <ExpandMore />
-                                            )}
-                                          </ListItemButton>
-                                          <Collapse
-                                            in={openDrop_3}
-                                            timeout="auto"
-                                            unmountOnExit
-                                          >
-                                            <List
-                                              component="div"
-                                              disablePadding
-                                            >
-                                              <ListItemButton sx={{ pl: 4 }}>
-                                                <ListItemIcon></ListItemIcon>
-                                              </ListItemButton>
-                                            </List>
-                                          </Collapse>
-                                        </ListItem>
-                                      ))}
-                                  </ListItemIcon>
-                                </ListItemButton>
-                              </List>
-                            </Collapse>
-                          </ListItem>
-                        ))}
-                      </ListItemIcon>
-                    </ListItemButton>
-                  </List>
-                </Collapse>
-              </ListItem>
+            <Typography variant="span">Widget</Typography>
+            {Application.map((text) => (
+              <CollapseList text={text} key={text.title} />
+            ))}
+          </List>
+          <List>
+            <Typography variant="span">Forms</Typography>
+            {Forms.map((text) => (
+              <Listing text={text} key={text.title} />
             ))}
           </List>
         </Box>
