@@ -2,31 +2,64 @@ import React, { useState } from 'react'
 import ListItemText from "@mui/material/ListItemText";
 import { Collapse, ListItemButton } from "@mui/material";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import ListItemIcon from "@mui/material/ListItemIcon";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import Listing from './Listing';
+import { useNavigate } from 'react-router-dom'
 
 const CollapseList = ({ text }) => {
     const [open, setOpen] = useState(false)
+    const navigate = useNavigate()
     const handleClick = () => {
         setOpen(!open);
     };
+    const linkHandler = (path) => {
+        // navigate(`/${path}`)
+    }
     return (
-        <div>
-            <ListItem button key={text.title} onClick={handleClick}>
-                <ListItemText primary={text.title} />
-                {open ? <ExpandLess /> : <ExpandMore />}
+        <div key={text.title}>
+            <ListItem
+                onClick={handleClick}
+            // component={NavLin}
+            // to="/login"
+            // to="/register"
+            // to={
+            //     text.path ? `${text.path}` : `${text.items.items.path}`
+            // }
+            >
+                {
+                    text.items ?
+                        <ListItemButton onClick={() => linkHandler("login")}>
+                            {
+                                text.items.items ?
+                                    <>
+                                        <ListItemIcon>{}</ListItemIcon>
+                                        <ListItemText primary={text.title} />
+                                    </>
+                                    :
+                                    <>
+                                        <ListItemIcon>{text.icon}</ListItemIcon>
+                                        <ListItemText primary={text.title} />
+                                        {open ? <ExpandLess /> : <ExpandMore />}
+                                    </>
+                            }
+                        </ListItemButton>
+                        :
+                        <ListItemButton>
+                            <ListItemIcon>{text.icon}</ListItemIcon>
+                            <ListItemText primary={text.title} />
+                        </ListItemButton>
+                }
             </ListItem>
             <Collapse
-                key={text.title}
                 in={open}
                 timeout='auto'
                 unmountOnExit
             >
-                <List component='li' disablePadding key={text.title}>
-                    {text.items.map(text => {
+                <List component='ul' disablePadding key={text.title}>
+                    {text.items && text.items.map(text => {
                         return (
-                            <Listing text={text} key={text.title} />
+                            <CollapseList text={text} key={text.title} />
                         );
                     })}
                 </List>

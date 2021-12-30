@@ -1,14 +1,18 @@
 import "./App.css";
-import Header from "./components/Header/Header";
-import { StyledEngineProvider } from "@mui/material/styles";
+import Main from "./components";
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Login from "./components/Pages/Auth/Login";
+import Register from "./components/Pages/Auth/Register";
 
 function App() {
   return (
-    <div className="App">
-      <StyledEngineProvider injectFirst>
-        <Header />
-      </StyledEngineProvider>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        {/* <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} /> */}
+      </Routes>
+    </BrowserRouter>
   );
 }
 

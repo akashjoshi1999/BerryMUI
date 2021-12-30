@@ -1,5 +1,5 @@
 import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
+import { styled, alpha, useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -18,16 +18,15 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import { Dashboard, Widget, Application, Forms } from "../Icons";
-import { Collapse, ListItemButton } from "@mui/material";
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import Listing from "../Listing";
+import { Dashboard, Widget, Application, Forms, Ui_elemets, Pages } from "../Icons";
 import CollapseList from "../CollapseList";
+import { Avatar } from '@mui/material';
+import SettingsInputComponentIcon from "@mui/icons-material/SettingsInputComponent";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import Logo from "../assets/Logo";
 
-const drawerWidth = 270;
+const drawerWidth = 300;
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -70,6 +69,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Header() {
+  const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -201,14 +201,15 @@ export default function Header() {
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
       >
         <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            sx={{ mr: 2 }}
           >
-            MUI
-          </Typography>
+            <Logo />
+          </IconButton>
           <IconButton
             size="large"
             edge="start"
@@ -217,10 +218,10 @@ export default function Header() {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            <MenuIcon sx={{ color: "purple" }} />
           </IconButton>
 
-          <Search>
+          <Search sx={{ border: 1, color: "silver", borderRadius: 3 }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -228,27 +229,37 @@ export default function Header() {
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ mr: 1 }}
+            >
+              <SettingsInputComponentIcon sx={{ color: "purple" }} />
+            </IconButton>
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
+            <Avatar
+              sx={{
+                mr: 5,
+                background: theme.palette.secondary.light,
+                color: theme.palette.secondary.dark,
+                "&:hover": {
+                  background: theme.palette.secondary.dark,
+                  color: theme.palette.secondary.light,
+                },
+              }}
             >
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+              <IconButton
+                size="large"
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
+                <NotificationsNoneIcon />
+              </IconButton>
+            </Avatar>
             <IconButton
               size="large"
               edge="end"
@@ -258,7 +269,8 @@ export default function Header() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              <AccountCircle sx={{ color: "purple", mr: 2 }} />
+              <SettingsOutlinedIcon sx={{ color: "purple" }} />
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
@@ -291,19 +303,19 @@ export default function Header() {
         <Toolbar />
         <Box sx={{ overflow: "auto", textAlign: "left", padding: "10px" }}>
           <List>
-            <Typography variant="p">Dashboard</Typography>
+            <Typography variant="span">Dashboard</Typography>
             {Dashboard.map((text) => (
-              <Listing text={text} key={text.title} />
+              <CollapseList text={text} key={text.title} />
             ))}
           </List>
           <List>
             <Typography variant="span">Widget</Typography>
             {Widget.map((text) => (
-              <Listing text={text} key={text.title} />
+              <CollapseList text={text} key={text.title} />
             ))}
           </List>
           <List>
-            <Typography variant="span">Widget</Typography>
+            <Typography variant="span">Application</Typography>
             {Application.map((text) => (
               <CollapseList text={text} key={text.title} />
             ))}
@@ -311,7 +323,19 @@ export default function Header() {
           <List>
             <Typography variant="span">Forms</Typography>
             {Forms.map((text) => (
-              <Listing text={text} key={text.title} />
+              <CollapseList text={text} key={text.title} />
+            ))}
+          </List>
+          <List>
+            <Typography variant="span">UI Elements</Typography>
+            {Ui_elemets.map((text) => (
+              <CollapseList text={text} key={text.title} />
+            ))}
+          </List>
+          <List>
+            <Typography variant="span">Pages</Typography>
+            {Pages.map((text) => (
+              <CollapseList text={text} key={text.title} />
             ))}
           </List>
         </Box>
